@@ -1,14 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Scanner;
 
 public class FileOperator {
-    private Scanner fileReader;
-    private File myFile;
-
-    public FileOperator(String filename) {
-        setFile(filename);
-    }
+   private Scanner fileReader;
+   private File myFile;
+  
+   public FileOperator(String filename) {
+      setFile(filename);
+  }
 
     public void setFile(String filename) {
         myFile = new File(filename);
@@ -18,19 +18,11 @@ public class FileOperator {
               System.out.println("File not found.");
         }
     }
-
-    public int[] toIntArray(int count){
-        int[] arr = new int[count];
-        for(int i=0; i<count; i++){
-            arr[i] = fileReader.nextInt();
-        }
-        return arr;
-    }
-
-    public String[] toStringArray(int size) {
-        String[] arr= new String[size];
+ 
+    public int[] toIntArray(int size) {
+        int[] arr= new int[size];
         for(int i=0; i<size; i++){
-           arr[i]=fileReader.nextLine();
+           arr[i]=fileReader.nextInt();
          } 
         return arr;
     }
@@ -43,14 +35,12 @@ public class FileOperator {
         return arr;
     }
 
-    
-
-    public static void main(String[] args) {
-
-        FileOperator reader = new FileOperator("numbers.txt");
-        String[] nums = toStringArray(10);
-        for(String n: nums){
-            System.out.println(n);
-        }
+    public String[] toStringArray(int size) {
+        String[] arr= new String[size];
+        for(int i=0; i<size; i++){
+           arr[i]=fileReader.nextLine();
+         } 
+        return arr;
     }
+
 }
