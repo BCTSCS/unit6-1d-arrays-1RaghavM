@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
@@ -67,5 +68,11 @@ public class DataAnalyzer {
         }
     }
 
-        
+    public int[] toIntArray(int size){
+        int [] arr = new int[size];
+        for(int i = 0; i<size; i++){
+            arr[i] = fileReader.nextInt();
+        }
+        return arr;
+    }
 }
