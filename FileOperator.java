@@ -46,7 +46,7 @@ public class FileOperator {
         return arr;
     }
 
-    public Arraylist<Intger> toIntList(){
+    public Arraylist<Integer> toIntList(){
         ArrayList<Integer> result = new Arraylist<>();
 
         while(fileReader.hasNextInt()){
