@@ -2,49 +2,45 @@ import java.awt.*;
 import javax.swing.*;
 
 public class DataGUI extends JFrame {
-    private JTextField inputField;
-    private JButton statusButton, percentageButton;
-    private JTextArea resultsArea;
-    private DataAnalyzer analyzer;
+    private JTextField input;
+    private JButton analyzeBtn, avgBtn;
+    private JTextArea output;
+    private DataAnalyzer data;
 
     public DataGUI() {
         super("Data Analysis");
         setSize(500, 400);
         setLayout(new FlowLayout());
 
-    
-        analyzer = new DataAnalyzer("countries.txt", "populations.txt", 
-                                  "incomes.txt", "unemployment.txt");
+        data = new DataAnalyzer("countries.txt", "populations.txt", 
+                                 "incomes.txt", "unemployment.txt");
 
-        
-        inputField = new JTextField(20);
-        statusButton = new JButton("Analyze by Status");
-        percentageButton = new JButton("Status Percentage");
-        resultsArea = new JTextArea(10, 40);
-        resultsArea.setEditable(false);
+        input = new JTextField(20);
+        analyzeBtn = new JButton("Analyze");
+        avgBtn = new JButton("Avg Unemployment");
+        output = new JTextArea(10, 40);
+        output.setEditable(false);
 
-       
-        add(inputField);
-        add(statusButton);
-        add(percentageButton);
-        add(new JScrollPane(resultsArea));
+        add(input);
+        add(analyzeBtn);
+        add(avgBtn);
+        add(new JScrollPane(output));
 
-        
-        statusButton.addActionListener(e -> analyzeStatus());
-        percentageButton.addActionListener(e -> showPercentage());
+        analyzeBtn.addActionListener(e -> analyze());
+        avgBtn.addActionListener(e -> showAvg());
 
         setVisible(true);
     }
 
-    private void analyzeStatus() {
-        String status = inputField.getText();
-        resultsArea.setText("Analyzing status: " + status);
-        analyzer.identifyHighRiskCommunities(status, 10);
+    private void analyze() {
+        String status = input.getText();
+        output.setText("Analyzing: " + status);
+        data.identifyHighRiskCommunities(status, 10);
     }
 
-    private void showPercentage() {
-        double average = analyzer.calculateAverageUnemployment();
-        resultsArea.setText("Average unemployment: " + average + "%");
+    private void showAvg() {
+        double avg = data.calculateAverageUnemployment();
+        output.setText("Avg Unemployment: " + avg + "%");
     }
 
     public static void main(String[] args) {
